@@ -1,65 +1,115 @@
 <div class="row">
   <div class="col-12">
+    <div class="card my-4 mx-auto" style="">
+      <div class="card-body">
+        <h5 class="card-title">Virtualization grid</h5>
+        <h6 class="card-subtitle mb-2 text-muted">mock mock</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <virtual-scroll [items]="itemsArray"
+                    [childHeight]="43"
+                    (update)="scrollItems = $event"
+                    (change)="indices = $event">
+      <table>
+        <tr *ngFor="let item of scrollItems ">
+
+          <td class="col-2">
+            {{item?.id}} &nbsp; {{item.name}}
+          </td>
+          <td class="col-4">
+            <input [(ngModel)]="item.name"  [ngModelOptions]="{standalone: true}" >
+          </td>
+          <td class="col-4">
+            <input [(ngModel)]="item.age"  [ngModelOptions]="{standalone: true}" >
+
+          </td>
+          <td class="col-2">
+            <input [(ngModel)]="item.address"  [ngModelOptions]="{standalone: true}" >
+
+          </td>
+
+
+        </tr>
+      </table>
+    </virtual-scroll>
+
+  </div>
+</div>
+<!--<div class="row">
+  <div class="col-12">
     <table class="table">
       <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
-        <th scope="col"><div [translate]="'key.first'"></div></th>
-        <th scope="col"><div [translate]="'key.last'"></div></th>
-        <th scope="col">Handle</th>
+        <th scope="col">
+          <div [translate]="'key.first'"></div>
+        </th>
+        <th scope="col">
+          <div [translate]="'name'"></div>
+        </th>
+        <th scope="col">Age</th>
+        <th scope="col">Address</th>
+        <th scope="col">House</th>
+        <th scope="col">pet</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
+      <ng-template ngFor let-line [ngForOf]="items" let-i="index">
+        <tr>
+          <th scope="row">{{line.id}}</th>
+          <td>
+            &lt;!&ndash;<input [(ngModel)]="line.name"  [ngModelOptions]="{standalone: true}" #t (ngModelChange)="checkModel(items,line,t)" >&ndash;&gt;
+            <input [(ngModel)]="line.name" [ngModelOptions]="{standalone: true}" #t
+                   (ngModelChange)="checkModel(items,line,t)">
+          </td>
+          <td>Name: {{line.name}}</td>
+          <td><input [(ngModel)]="line.age" [ngModelOptions]="{standalone: true}"/></td>
+          <td><input [(ngModel)]="line.address" [ngModelOptions]="{standalone: true}"/></td>
+          <td><input [(ngModel)]="line.house"[ngModelOptions]="{standalone: true}"></td>
+          <td><input [(ngModel)]="line.pet" [ngModelOptions]="{standalone: true}"></td>
+        </tr>
+      </ng-template>
       </tbody>
     </table>
 
-    <table class="table">
-      <thead class="thead-light">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-      </tbody>
-    </table>
+    &lt;!&ndash;    <table class="table">
+          <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          </tbody>
+        </table>&ndash;&gt;
   </div>
-</div>
+</div>-->
+

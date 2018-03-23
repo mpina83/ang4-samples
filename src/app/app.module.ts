@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -13,6 +14,7 @@ import {Http, HttpModule} from '@angular/http';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {ActionReducerMap, StoreModule} from '@ngrx/store';
 import {counterReducer, namedCounterReducer} from './shared/store/reducers/counter-reducer';
+import {VirtualScrollModule} from 'angular2-virtual-scroll';
 
 
 export function createTranslateLoader(http: Http) {
@@ -47,6 +49,7 @@ productionReducer.counterBState = namedCounterReducer(counterReducer, 'counterBS
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     NgbModule.forRoot(),
     HttpModule,
@@ -66,7 +69,8 @@ productionReducer.counterBState = namedCounterReducer(counterReducer, 'counterBS
     ),
     StoreDevtoolsModule.instrument({
       maxAge: 25
-    })
+    }),
+    VirtualScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]
