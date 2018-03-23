@@ -1,0 +1,30 @@
+<div class="">
+  <div class="row">
+    <div class="col-12 bg-success">
+      <h2>Store Init sample</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg12">
+      <button class="btn btn-outline-dark" (click)="incrementA()">Inc A</button>
+
+      <button class="btn btn-outline-dark" (click)="decrementA()">Dec A</button>
+
+      <button class="btn btn-outline-dark" (click)="resetA()">Reset A</button>
+
+      <button class="btn btn-outline-dark" (click)="incrementB()">IncrementB</button>
+
+      <button class="btn btn-outline-dark" (click)="decrementB()">DecrementB</button>
+
+      <button class="btn btn-outline-dark" (click)="resetB()">ResetB Counter</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3>counter value: &nbsp; {{counterA$ | async}}</h3>
+      <!--    <h3>counterA Internal value: &nbsp; {{countA}}</h3>-->
+      <h3>counterB value: &nbsp; {{counterB$ | async}}</h3>
+    </div>
+  </div>
+</div>
+

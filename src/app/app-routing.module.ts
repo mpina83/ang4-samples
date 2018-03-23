@@ -1,7 +1,33 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {StoreComponent} from './store/store.component';
+import {CoursesComponent} from './courses/courses.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'store',
+    component: StoreComponent
+  },
+  {
+    path: 'about',
+    loadChildren: ('app/about/about.module#AboutModule')
+    /*component: AboutComponent*/
+  },
+  {
+    path: 'courses',
+    component: CoursesComponent
+  },
+  {
+    path: '',
+    redirectTo: '/store',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/store',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
