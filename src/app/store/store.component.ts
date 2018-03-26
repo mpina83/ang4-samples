@@ -3,6 +3,8 @@ import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {CounterAState, CounterBState} from '../app.component';
 import {DECREMENT, INCREMENT, RESET} from '../shared/store/reducers/counter-reducer';
+import {GENERIC_PAYLOAD_CONSTS_LIST, GenericPayloadStateList} from '../shared/store/interfaces/generic-payload-interfaces';
+import * as GenericPayloadActions from '../shared/store/actions/generic-payload-actions';
 
 @Component({
   selector: 'app-store',
@@ -13,9 +15,11 @@ export class StoreComponent implements OnInit, OnDestroy {
   counterA$: Observable<number>;
   counterB$: Observable<number>;
   countA = 0;
+  mockStore$: Observable<any>;
   alive = true;
 
-  constructor(private counterAStore: Store<CounterAState>, private counterBStore: Store<CounterBState>) {
+  constructor(private counterAStore: Store<CounterAState>, private counterBStore: Store<CounterBState>,
+              private mockGenericStore: Store<GenericPayloadStateList>) {
   }
 
   incrementA() {
@@ -48,9 +52,21 @@ export class StoreComponent implements OnInit, OnDestroy {
     this.counterBStore.dispatch({type: RESET, target: 'counterBState'});
   }
 
+  setMockGenericValue(): void {
+    this.mockGenericStore.dispatch(new GenericPayloadActions.UpdatePayloadAction(
+      GENERIC_PAYLOAD_CONSTS_LIST.MOCK_SHARED_STATE,
+      {
+        name: 'Pato',
+        role: 'Super Admin'
+      }));
+  }
+
   ngOnInit() {
     this.counterA$ = this.counterAStore.select(state => state.counterAState);
     this.counterB$ = this.counterBStore.select(state => state.counterBState);
+
+    this.mockStore$ = this.mockGenericStore.select(state => state.mockSharedGenericState);
+
     this.counterA$.takeWhile(() => this.alive).subscribe(value => {
       if (value !== undefined) {
         console.log('setting value: ' + value);

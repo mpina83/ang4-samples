@@ -15,6 +15,9 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {ActionReducerMap, StoreModule} from '@ngrx/store';
 import {counterReducer, namedCounterReducer} from './shared/store/reducers/counter-reducer';
 import {VirtualScrollModule} from 'angular2-virtual-scroll';
+import {createNamedWrapperReducer} from './shared/store/reducers/high-order-reducer';
+import {GENERIC_PAYLOAD_CONSTS_LIST} from './shared/store/interfaces/generic-payload-interfaces';
+import {genericPayloadReducer} from './shared/store/reducers/generic-payload-reducer';
 
 
 export function createTranslateLoader(http: Http) {
@@ -32,11 +35,14 @@ export function createTranslateLoader(http: Http) {
 interface ApplicationState {
   counterBState: any;
   counterAState: any;
+  mockSharedGenericState: any;
 }
 export const productionReducer: ActionReducerMap<ApplicationState> = {
   counterAState : null,
-  counterBState : null
+  counterBState : null,
+  mockSharedGenericState: null
 };
+productionReducer.mockSharedGenericState = createNamedWrapperReducer(genericPayloadReducer, GENERIC_PAYLOAD_CONSTS_LIST.MOCK_SHARED_STATE);
 productionReducer.counterAState = namedCounterReducer(counterReducer, 'counterAState');
 productionReducer.counterBState = namedCounterReducer(counterReducer, 'counterBState');
 
@@ -60,10 +66,6 @@ productionReducer.counterBState = namedCounterReducer(counterReducer, 'counterBS
         deps: [Http]
       }
     }),
-/*    StoreModule.forRoot({
-      counterAState: namedCounterReducer(counterReducer, 'counterAState'),
-      counterBState: namedCounterReducer(counterReducer, 'counterBState')
-    }),*/
     StoreModule.forRoot(
       (productionReducer)
     ),
