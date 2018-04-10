@@ -18,6 +18,7 @@ import {VirtualScrollModule} from 'angular2-virtual-scroll';
 import {createNamedWrapperReducer} from './shared/store/reducers/high-order-reducer';
 import {GENERIC_PAYLOAD_CONSTS_LIST} from './shared/store/interfaces/generic-payload-interfaces';
 import {genericPayloadReducer} from './shared/store/reducers/generic-payload-reducer';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 
 export function createTranslateLoader(http: Http) {
@@ -72,7 +73,8 @@ productionReducer.counterBState = namedCounterReducer(counterReducer, 'counterBS
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
-    VirtualScrollModule
+    VirtualScrollModule,
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

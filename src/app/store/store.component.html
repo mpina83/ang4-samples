@@ -28,5 +28,18 @@
       <h3>counterB value: &nbsp; {{counterB$ | async}}</h3>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12">
+      <input type="text" [(ngModel)]="mockJson[0].name">
+      <input type="text" #pato [ngModel]="mockJson[0].gender">
+      <button class="btn btn-outline-info" (click)="setGenderValue(pato)"> Set Gender</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <pre>{{mockJson[0] | json}}</pre>
+    </div>
+  </div>
 </div>
+
 

@@ -17,6 +17,7 @@ export class StoreComponent implements OnInit, OnDestroy {
   countA = 0;
   mockStore$: Observable<any>;
   alive = true;
+  mockJson = [];
 
   constructor(private counterAStore: Store<CounterAState>, private counterBStore: Store<CounterBState>,
               private mockGenericStore: Store<GenericPayloadStateList>) {
@@ -73,6 +74,16 @@ export class StoreComponent implements OnInit, OnDestroy {
         this.countA = value * 10;
       }
     });
+
+    this.mockJson.push({
+      'name': 'Ethel Price',
+      'gender': 'female',
+      'company': 'Johnson, Johnson and Partners, LLC CMP DDC',
+      'age': 22
+    });
+  }
+  setGenderValue(value) {
+    this.mockJson[0].gender = value.value;
   }
 
   ngOnDestroy() {
