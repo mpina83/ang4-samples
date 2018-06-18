@@ -22,6 +22,7 @@
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/@swimlane/ngx-datatable/src/themes/material.scss",
         "../node_modules/@swimlane/ngx-datatable/src/themes/dark.scss",
+        "../node_modules/ngx-toastr/toastr.css",
         "styles.css"
       ],
       "scripts": [

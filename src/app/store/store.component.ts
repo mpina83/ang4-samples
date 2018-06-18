@@ -5,6 +5,7 @@ import {CounterAState, CounterBState} from '../app.component';
 import {DECREMENT, INCREMENT, RESET} from '../shared/store/reducers/counter-reducer';
 import {GENERIC_PAYLOAD_CONSTS_LIST, GenericPayloadStateList} from '../shared/store/interfaces/generic-payload-interfaces';
 import * as GenericPayloadActions from '../shared/store/actions/generic-payload-actions';
+import {ToastConfig, ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-store',
@@ -18,9 +19,19 @@ export class StoreComponent implements OnInit, OnDestroy {
   mockStore$: Observable<any>;
   alive = true;
   mockJson = [];
+  toastStoreConfig: ToastConfig = {
+    positionClass: 'toast-bottom-full-width',
+    closeButton: true,
+    progressBar: true,
+    enableHtml: true,
+    timeOut: 0,
+    extendedTimeOut: 0,
+    onActivateTick: false,
+    toastClass: 'toast text-center'
+  };
 
   constructor(private counterAStore: Store<CounterAState>, private counterBStore: Store<CounterBState>,
-              private mockGenericStore: Store<GenericPayloadStateList>) {
+              private mockGenericStore: Store<GenericPayloadStateList>, private toastrService: ToastrService) {
   }
 
   incrementA() {
@@ -62,6 +73,19 @@ export class StoreComponent implements OnInit, OnDestroy {
       }));
   }
 
+  showToastInfo() {
+    let stringBuild = '<p></p>';
+    for ( let i = 0 ; i < 6 ; i++) {
+      stringBuild += '<p>item number:{{i}} </p> <hr/>';
+    }
+    this.toastrService.error(stringBuild, 'REST POST', this.toastStoreConfig);
+  }
+  showToastSuccess() {
+    this.toastrService.success('Updated info with success', 'REST POST', this.toastStoreConfig);
+  }
+  showToastError() {
+    this.toastrService.error('Updated info with success', 'REST POST', this.toastStoreConfig);
+  }
   ngOnInit() {
     this.counterA$ = this.counterAStore.select(state => state.counterAState);
     this.counterB$ = this.counterBStore.select(state => state.counterBState);
@@ -87,6 +111,7 @@ export class StoreComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.toastrService.clear();
     console.log('Destroying!! Store component');
     this.alive = false;
   }

@@ -19,6 +19,8 @@ import {createNamedWrapperReducer} from './shared/store/reducers/high-order-redu
 import {GENERIC_PAYLOAD_CONSTS_LIST} from './shared/store/interfaces/generic-payload-interfaces';
 import {genericPayloadReducer} from './shared/store/reducers/generic-payload-reducer';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 export function createTranslateLoader(http: Http) {
@@ -74,7 +76,9 @@ productionReducer.counterBState = namedCounterReducer(counterReducer, 'counterBS
       maxAge: 25
     }),
     VirtualScrollModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    ToastrModule.forRoot(), // ToastrModule Added
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
