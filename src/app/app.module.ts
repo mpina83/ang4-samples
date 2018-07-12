@@ -21,6 +21,8 @@ import {genericPayloadReducer} from './shared/store/reducers/generic-payload-red
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TreeModule} from 'angular-tree-component';
+import {ModalHelperService, NgbdModalContentComponent} from './shared/services/modal-helper.service';
 
 
 export function createTranslateLoader(http: Http) {
@@ -54,7 +56,8 @@ productionReducer.counterBState = namedCounterReducer(counterReducer, 'counterBS
   declarations: [
     AppComponent,
     StoreComponent,
-    CoursesComponent
+    CoursesComponent,
+    NgbdModalContentComponent
   ],
   imports: [
     BrowserModule,
@@ -78,9 +81,11 @@ productionReducer.counterBState = namedCounterReducer(counterReducer, 'counterBS
     VirtualScrollModule,
     NgxDatatableModule,
     ToastrModule.forRoot(), // ToastrModule Added
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TreeModule
   ],
-  providers: [],
+  entryComponents: [NgbdModalContentComponent],
+  providers: [ModalHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

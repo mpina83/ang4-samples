@@ -1,4 +1,6 @@
 {
   "home":"Casa",
-  "key.first":"Primeiro"
+  "key.first":"Primeiro",
+  "generic.ok": "Ok",
+  "generic.cancel": "Cancelar"
 }

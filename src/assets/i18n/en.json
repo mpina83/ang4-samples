@@ -1,4 +1,6 @@
 {
   "home":"Home",
-  "key.first":"First"
+  "key.first":"First",
+  "generic.ok":"Ok",
+  "geneic.cancel": "Cancel"
 }

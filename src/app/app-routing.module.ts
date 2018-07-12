@@ -14,6 +14,10 @@ const routes: Routes = [
     /*component: AboutComponent*/
   },
   {
+    path: 'features',
+    loadChildren: ('app/features/features.module#FeaturesModule')
+  },
+  {
     path: 'courses',
     component: CoursesComponent
   },
